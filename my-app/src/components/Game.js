@@ -31,17 +31,15 @@ const Game = () => {
     setXisNext(step % 2 === 0);
   };
 
-  const renderMoves = () => {
-    history.map((_step, move) => {
-      const destination = (move) ? `Go to move#${move}` : "Go to start";
+  const renderMoves = history.map((_step, move) => {
+    const destination = move ? `Go to move#${move}` : "Go to start";
 
-      return (
-        <li key={move}>
-          <button onClick={() => jumpTo(move)}>{destination}</button>
-        </li>
-      );
-    });
-  };
+    return (
+      <li key={move}>
+        <button onClick={() => jumpTo(move)}>{destination}</button>
+      </li>
+    );
+  });
 
   return (
     <>
@@ -52,7 +50,7 @@ const Game = () => {
             ? "Winner: " + winner
             : "Next Player: " + (xIsNext ? "X" : "O")}
         </p>
-        <ul>{renderMoves()}</ul>
+        <ol>{renderMoves}</ol>
       </div>
     </>
   );
